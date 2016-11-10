@@ -1,4 +1,4 @@
-function numberBits (someNumber) {
+function bitsArray (someNumber) {
 	// someNumber must be between -2147483648 and 2147483647
 	// all javascript numbers are 64-bit floats
 	if (someNumber > 0x7fffffff || someNumber < -0x80000000) { 
