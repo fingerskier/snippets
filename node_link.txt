@@ -1,0 +1,1 @@
+sudo ln -sf /usr/local/n/versions/node/<VERSION>/bin/node /usr/bin/node
