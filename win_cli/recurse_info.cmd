@@ -1,8 +1,8 @@
 ```
 for /R %%I in (html\*.md.html) do (
-	echo %%~dI	REM
-	echo %%~pI	REM
-	echo %%~nI	REM
-	echo %%~xI	REM
+	echo %%~dI	REM drive letter
+	echo %%~pI	REM path
+	echo %%~nI	REM file-name
+	echo %%~xI	REM file-extension
 )
 ```
