@@ -1,0 +1,2 @@
+$client = new-object System.Net.WebClient
+$client.DownloadFile("https://backend.cesanta.com/cgi-bin/api.cgi?act=dl&os=win","c:\path\filename")
