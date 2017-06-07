@@ -1,4 +1,7 @@
-a = (href, text)=>{
+function a(href, text){
+    var href = href || ''
+    var text = text || ''
+
     return `<a href="${href}">${text}<\a>`
 }
 
@@ -11,8 +14,13 @@ function parseChildren(){
             result += X()
         } else if ($.isArray(X)) {
             for(var Y of X){
-                result += children(Y)
+                result += parseChildren(Y)
             }
+        } else if ($.isPlainObject(X)) {
+            let O = (X.length === 1 ? [O[0]] : Array.apply(null, X))
+            for(var Y of X){
+                result += parseChildren(Y)
+            }            
         } else if (X.toString) {
             result += X.toString()
         } else {
@@ -23,10 +31,10 @@ function parseChildren(){
     return result
 }
 
-hr = ()=>{
+function hr(){
     return '<hr/>'
 }
 
-nav = (child)=>{
-    return `<nav>${child()}</nav>`
+function nav(){
+    return `<nav>${parseChildren(arguments)}</nav>`
 }
