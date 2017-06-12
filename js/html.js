@@ -21,60 +21,45 @@ function parseChildren(){
     return result
 }
 
-function tag(name, attr, ...content){
-    var attrs = ''
-    var guts = ''
+function html_tag(tagName){
+    var _selfClosers = [
+        'area',
+        'base',
+        'br',
+        'hr',
+        'img',
+        'input',
+        'link',
+        'meta',
+        'param',
+        'track',
+        'wbr',
+    ]
 
-    if ($.isPlainObject(attr)){
-        for (var X in attr){
-            attrs += `${X}="${attr[X]}"`
+    return function tag(attr, ...content){
+        var attrs = ''
+        var guts = ''
+
+        if ($.isPlainObject(attr)){
+            for (var X in attr){
+                attrs += `${X}="${attr[X]}" `
+            }
+        } else {
+            guts = parseChildren(attr)
         }
-    } else {
-        guts = parseChildren(attr)
+
+        if (_selfClosers.includes(tagName)){
+            return `<${tagName} ${attrs}/>${parseChildren(guts)}`
+        } else {
+            return `<${tagName} ${attrs}>${parseChildren(guts)}${parseChildren(content)}</${tagName}>`
+        }
     }
-
-    return `<${name} ${attrs}>${parseChildren(guts)}${parseChildren(content)}</${name}>`
 }
 
-function a(href, ...content){
-    var href = href || ''
-
-    return tag('a', {href:href}, content)
+var html_proxy = {
+    get(target, name){
+        return name in target ? target[name] : html_tag(name);
+    }
 }
 
-function div(){
-console.log(arguments)
-    return tag('div', arguments)
-}
-
-function footr(){
-    return `<footer>${parseChildren(arguments)}</footer>`
-}
-
-function h1(){
-    return `<h1>${parseChildren(arguments)}</h1>`
-}
-
-function header(){
-    return `<header>${parseChildren(arguments)}</header>`
-}
-
-function hr(){
-    return '<hr/>'
-}
-
-function img(src,alt){
-    return `<img src="${src}" alt="${alt}">`
-}
-
-function li(){
-    return `<li>${parseChildren(arguments)}</li>`
-}
-
-function nav(){
-    return `<nav>${parseChildren(arguments)}</nav>`
-}
-
-function ul(){
-    return `<ul>${parseChildren(arguments)}</ul>`
-}
+var html = new Proxy({}, html_proxy);
