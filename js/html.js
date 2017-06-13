@@ -36,22 +36,24 @@ function html_tag(tagName){
         'wbr',
     ]
 
-    return function tag(attr, ...content){
+    return function tag(attr){
+        var attr = attr || {}
         var attrs = ''
-        var guts = ''
 
         if ($.isPlainObject(attr)){
             for (var X in attr){
                 attrs += `${X}="${attr[X]}" `
             }
         } else {
-            guts = parseChildren(attr)
+            attrs = parseChildren(attr)
         }
 
-        if (_selfClosers.includes(tagName)){
-            return `<${tagName} ${attrs}/>${parseChildren(guts)}`
-        } else {
-            return `<${tagName} ${attrs}>${parseChildren(guts)}${parseChildren(content)}</${tagName}>`
+        return function renderer(children){
+            if (_selfClosers.includes(tagName)){
+                return `<${tagName} ${attrs}/>${parseChildren(children)}`
+            } else {
+                return `<${tagName} ${attrs}>${parseChildren(children)}</${tagName}>`
+            }
         }
     }
 }
