@@ -1,3 +1,11 @@
+function getScript(URL){
+    var scriptThing = document.createElement('script');
+
+    scriptThing.setAttribute('src',URL);
+
+    document.head.appendChild(scriptThing);
+}
+
 function parseChildren(){
     var args = (arguments.length === 1 ? [arguments[0]] : Array.apply(null, arguments));
     var result = ''
@@ -42,13 +50,17 @@ function html_tag(tagName){
 
         if ($.isPlainObject(attr)){
             for (var X in attr){
-                attrs += `${X}="${attr[X]}" `
+                if (attr[X]){
+                    attrs += `${X}="${attr[X]}" `
+                } else {
+                    attrs += ` ${X} `
+                }
             }
         } else {
             attrs = parseChildren(attr)
         }
 
-        return function renderer(children){
+        return function renderer(...children){
             if (_selfClosers.includes(tagName)){
                 return `<${tagName} ${attrs}/>${parseChildren(children)}`
             } else {
