@@ -1,3 +1,24 @@
+/*
+var editForm = html.form(
+    {id:'editForm'},
+
+    html.input({id:'editID',name:'_id',placeholder:'identifier',type:'text'}),    
+    html.h3('Slug'),
+    html.input({id:'editSlug',name:'slug',placeholder:'entitling',type:'text'}),    
+    html.h3('Text'),
+    html.textarea({id:'editText',name:'text'}),
+    html.button({id:'editSubmit'}, 'Save')
+)
+
+var footer = html.nav(html.ul(
+    html.li(html.a({href:'/'}, 'root'))
+    ,
+    html.li("|")
+    ,
+    html.li(html.a({href:'http://localhost:5984/_utils'}, 'Home'))
+))
+*/
+
 function getScript(URL){
     var scriptThing = document.createElement('script');
 
