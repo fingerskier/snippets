@@ -92,8 +92,14 @@ function html_tag(tagName){
 }
 
 var html_proxy = {
-    get(target, name){
+    get(target, name) {
         return name in target ? target[name] : html_tag(name);
+    }
+    ,
+    set(target, prop, value, receiver) {
+        target[prop] = value
+
+        this.render()
     }
 }
 
