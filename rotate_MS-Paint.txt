@@ -1,0 +1,11 @@
+How-To Rotate in Windows Paint
+------------------------------
+
+horiz skew X	30
+
+vertical stretch 1 / cos^2(x)	133
+
+
+vertical skew -X
+
+horiz & vert stretch cos(X)	87
