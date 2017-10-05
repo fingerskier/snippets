@@ -1,0 +1,5 @@
+#PIW_indirect:=IW(#Addr):P;
+QW(#Addr):P := 0;
+#My_IW:= IW(#Addr);
+QW(#Addr):=0;
+#My_DB_W:=WORD_TO_BLOCK_DB(#DB_No).DW(#Addr);
