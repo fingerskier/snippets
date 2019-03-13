@@ -1,0 +1,9 @@
+Calculate density via differential hydrostatic pressure:
+
+density(t) = (diffPressure + a(t0 - t)) / (weight * distance * (1 + b(t - tmed)))
+- a ~ filling fluid compensation coefficient
+- t0 ~ calibration temperature
+- t ~ process temperature
+- distance ~ between the 
+- b ~ metal dilation coefficient
+- tmed ~ temperature downstream of sensor
