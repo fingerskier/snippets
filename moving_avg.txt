@@ -1,0 +1,2 @@
+Average := Smoothness * (#alue - previousValue) + ((Value + previousValue) / 2.0)
+// Smoothness is a decimal, defaults to 0.01, higher values mean flatter response
