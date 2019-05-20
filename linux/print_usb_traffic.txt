@@ -1,0 +1,7 @@
+cat /dev/ttyUSB0
+
+cat < /dev/ttyUSB0
+
+od -x < /dev/ttyUSB0
+
+socat stdio /dev/ttyUSB0
