@@ -1,0 +1,8 @@
+1. Enable usb access in ```chrome://flags/```
+
+2. See if devices are registering after being plugged in via ```chrome://device-log/```
+
+3. Grab the device thusly ```navigator.usb.requestDevice({ filters: [{ vendorId: 0x2341 }] })```
+...where 'vendorId' is the 'vid' portion of the path in the device-log
+~ navigator.usb.requestDevice({filters:[{vendorId:0x0984}]}).then(console.log)
+
