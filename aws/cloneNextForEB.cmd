@@ -5,4 +5,4 @@ xcopy .\*.* ..\_projectSub /Q/Y
 xcopy .\.next\*.* ..\_projectSub\.next /E/Q/Y/I/H
 xcopy .\public\*.* ..\_projectSub\public /E/Q/Y/I/H
 
-tar -a -c -f ..\project.zip ..\_projectSub
+@REM tar -a -c -f ..\project.zip ..\_projectSub
